@@ -1,0 +1,36 @@
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+index ea466eb..6dc7ac6 100644
+--- a/app/controllers/application_controller.rb
++++ b/app/controllers/application_controller.rb
+@@ -2,10 +2,6 @@ class ApplicationController < ActionController::API
+   before_filter :current_user, :cors_preflight_check
+   after_filter :cors_set_access_control_headers
+ 
+-  def login
+-    render nothing: true
+-  end
+-
+   def cors_set_access_control_headers
+     set_header
+   end
+@@ -27,5 +23,6 @@ class ApplicationController < ActionController::API
+   def current_user
+ 
+   end
++
+   helper_method :current_user
+ end
+diff --git a/config/routes.rb b/config/routes.rb
+index b7d43ac..2530102 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -1,6 +1,8 @@
+ Rails.application.routes.draw do
+-  post 'login' => 'application#login'
++  post 'login' => 'users#login'
++  post 'signup' => 'users#signup'
+   match "*all" => "application#cors_preflight_check", :constraints => { :method => "OPTIONS" }, via: [:options]
++  resources :games
+   # The priority is based upon order of creation: first created -> highest priority.
+   # See how all your routes lay out with "rake routes".
+ 

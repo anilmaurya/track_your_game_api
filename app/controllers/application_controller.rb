@@ -2,10 +2,6 @@ class ApplicationController < ActionController::API
   before_filter :current_user, :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
-  def login
-    render nothing: true
-  end
-
   def cors_set_access_control_headers
     set_header
   end
@@ -27,5 +23,6 @@ class ApplicationController < ActionController::API
   def current_user
 
   end
+
   helper_method :current_user
 end
