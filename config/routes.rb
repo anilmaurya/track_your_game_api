@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'signup' => 'users#signup'
   match "*all" => "application#cors_preflight_check", :constraints => { :method => "OPTIONS" }, via: [:options]
   resources :games
+  resources :players
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::API
-  before_filter :current_user, :cors_preflight_check
-  after_filter :cors_set_access_control_headers
+  #before_filter :current_user, :cors_preflight_check
+  #before_filter :cors_set_access_control_headers
+
+  before_action :set_header
 
   def cors_set_access_control_headers
     set_header
